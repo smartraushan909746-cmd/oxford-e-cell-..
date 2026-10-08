@@ -1,118 +1,124 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ब्लॉग और PPT लिस्ट</title>
+    <title>10 Photo Slider</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        /* Basic styling */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #f7f9fc;
-            padding: 16px;
-            color: #333;
-        }
-
-        .header-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            text-align: center;
-            color: #1a202c;
-        }
-
-        .blog-container {
+            font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: column;
-            gap: 14px;
-            max-width: 500px;
-            margin: 0 auto;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
         }
 
-        .blog-card {
-            background-color: #ffffff;
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e2e8f0;
+        .slider-container {
+            position: relative;
+            width: 600px; /* Aap ise apne hisaab se chota/bada kar sakte hain */
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background: white;
         }
 
-        .blog-card h3 {
-            font-size: 16px;
-            margin-bottom: 8px;
-            color: #2d3748;
-        }
-
-        .blog-card p {
-            font-size: 13px;
-            color: #718096;
-            margin-bottom: 14px;
-            line-height: 1.4;
-        }
-
-        .btn-group {
+        .slider-wrapper {
             display: flex;
-            gap: 10px;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
         }
 
+        .slider-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Photo ko stretch hone se bachata hai */
+            flex-shrink: 0;
+        }
+
+        /* Buttons styling */
         .btn {
-            flex: 1;
-            text-align: center;
-            padding: 10px 0;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: opacity 0.2s;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            z-index: 10;
         }
 
-        .btn:active {
-            opacity: 0.8;
+        .btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
         }
 
-        .btn-video {
-            background-color: #e53e3e;
-            color: #ffffff;
+        .prev-btn {
+            left: 10px;
         }
 
-        .btn-ppt {
-            background-color: #3182ce;
-            color: #ffffff;
+        .next-btn {
+            right: 10px;
         }
     </style>
 </head>
 <body>
 
-    <h1 class="header-title">लेटेस्ट ब्लॉग व PPT</h1>
+    <div class="slider-container">
+        <!-- Prev/Next Buttons -->
+        <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
 
-    <div class="blog-container">
-
-        <!-- नया ब्लॉग जोड़ने के लिए इस पूरे ब्लॉक को कॉपी-पेस्ट करें -->
-        <div class="blog-card">
-            <h3>ब्लॉग 1: टॉपिक का नाम</h3>
-            <p>यहाँ ब्लॉग या वीडियो के बारे में संक्षिप्त जानकारी लिखें।</p>
-            <div class="btn-group">
-                <a href="https://youtube.com/https://youtube.com/shorts/1J4fcaj0bo0?si=WINRrb1HE65sa-ge" target="_blank" class="btn btn-video">वीडियो देखें</a>
-                <a href="https://drive.google.com/YOUR_PPT_URL_1" target="_blank" class="btn btn-ppt">PPT खोलें</a>
-            </div>
+        <!-- Photos Wrapper -->
+        <div class="slider-wrapper" id="slider">
+            <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
+                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+            <img src="https://picsum.photos/id/1015/600/400" alt="Photo 1">
+            <img src="https://picsum.photos/id/1016/600/400" alt="Photo 2">
+            <img src="https://picsum.photos/id/1018/600/400" alt="Photo 3">
+            <img src="https://picsum.photos/id/1019/600/400" alt="Photo 4">
+            <img src="https://picsum.photos/id/1020/600/400" alt="Photo 5">
+            <img src="https://picsum.photos/id/1021/600/400" alt="Photo 6">
+            <img src="https://picsum.photos/id/1022/600/400" alt="Photo 7">
+            <img src="https://picsum.photos/id/1023/600/400" alt="Photo 8">
+            <img src="https://picsum.photos/id/1024/600/400" alt="Photo 9">
+            <img src="https://picsum.photos/id/1025/600/400" alt="Photo 10">
         </div>
-
-        <!-- दूसरा ब्लॉग -->
-        <div class="blog-card">
-            <h3>ब्लॉग 2: टॉपिक का नाम</h3>
-            <p>यहाँ ब्लॉग या वीडियो के बारे में संक्षिप्त जानकारी लिखें।</p>
-            <div class="btn-group">
-                <a href="https://youtube.com/YOUR_VIDEO_URL_2" target="_blank" class="btn btn-video">वीडियो देखें</a>
-                <a href="https://drive.google.com/YOUR_PPT_URL_2" target="_blank" class="btn btn-ppt">PPT खोलें</a>
-            </div>
-        </div>
-
     </div>
+
+    <script>
+        let currentIndex = 0;
+        const slider = document.getElementById('slider');
+        const totalImages = slider.children.length; // Yeh automatically 10 count karega
+
+        function moveSlide(direction) {
+            currentIndex += direction;
+
+            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
+            if (currentIndex >= totalImages) {
+                currentIndex = 0;
+            }
+            
+            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
+            if (currentIndex < 0) {
+                currentIndex = totalImages - 1;
+            }
+
+            // Slider ko shift karo
+            slider.style.transform = translateX(-${currentIndex * 100}%);
+        }
+
+        // (Optional) Automatic slider - Har 3 second mein apne aap badle
+        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
+        setInterval(() => {
+            moveSlide(1);
+        }, 3000); 
+    </script>
 
 </body>
 </html>
