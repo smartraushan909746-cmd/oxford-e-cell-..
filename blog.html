@@ -8,18 +8,27 @@
         /* Basic styling */
         body {
             font-family: Arial, sans-serif;
-            display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             background-color: #f4f4f4;
             margin: 0;
+        }
+        .header{
+            width: 100%;
+            overflow: hidden;
+        }
+        .header img{
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
         }
 
         .slider-container {
             position: relative;
-            width: 600px; /* Aap ise apne hisaab se chota/bada kar sakte hain */
+            max-width: 600px; /* Aap ise apne hisaab se chota/bada kar sakte hain */
             height: 400px;
+            margin: 20px auto;
             overflow: hidden;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -65,11 +74,21 @@
         .next-btn {
             right: 10px;
         }
+       
+        a img{
+            height: auto;
+            max-width: 100%;
+        }
     </style>
+    <header class="header">
+        <a href="index.html"><img src="blogphoto.jpeg" alt=""></a>
+    </header>
+
 </head>
 <body>
 
-    <div class="slider-container">
+    <main>
+        <div class="slider-container">
         <!-- Prev/Next Buttons -->
         <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
         <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
@@ -78,21 +97,20 @@
         <div class="slider-wrapper" id="slider">
             <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
                  Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
-            <img src="https://drive.google.com/file/d/1cDSFHpL2sDqMBFTI91xkh6d9NwlGWBbI/view?usp=drivesdk" alt="Photo 1">
-            <img src="https://picsum.photos/id/1016/600/400" alt="Photo 2">
-            <img src="https://picsum.photos/id/1018/600/400" alt="Photo 3">
-            <img src="https://picsum.photos/id/1019/600/400" alt="Photo 4">
-            <img src="https://picsum.photos/id/1020/600/400" alt="Photo 5">
-            <img src="https://picsum.photos/id/1021/600/400" alt="Photo 6">
-            <img src="https://picsum.photos/id/1022/600/400" alt="Photo 7">
-            <img src="https://picsum.photos/id/1023/600/400" alt="Photo 8">
-            <img src="https://picsum.photos/id/1024/600/400" alt="Photo 9">
-            <img src="https://picsum.photos/id/1025/600/400" alt="Photo 10">
+            <img src="blog1.jpeg" alt="Photo 1">
+            <img src="blog2.jpeg" alt="Photo 1">
+            <img src="blog3.jpeg" alt="Photo 1">
+            <img src="blog4.jpeg" alt="Photo 1">
+            <img src="blog5.jpeg" alt="Photo 1">
+           
         </div>
-        <img src="https://drive.google.com/file/d/1cDSFHpL2sDqMBFTI91xkh6d9NwlGWBbI/view?usp=drivesdk">
-        
+    </div>
+    <div class="blogwrite">
+        <p>Create a professional business case study infographic for a college seminar. Include company introduction, product portfolio, business growth timeline, revenue chart, expansion milestones, estimated valuation, and company headquarters. Use a dark textured background, white text, cyan highlights, realistic images, and a clean editorial layout. Make it visually impressive, informative, and suitable for a BCA student presentation.</p>
+
     </div>
 
+    </main>
     <script>
         let currentIndex = 0;
         const slider = document.getElementById('slider');
@@ -102,7 +120,7 @@
             currentIndex += direction;
 
             // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-            if (currentIndex >= totalImages) {
+             if (currentIndex >= totalImages) {
                 currentIndex = 0;
             }
             
@@ -112,7 +130,7 @@
             }
 
             // Slider ko shift karo
-            slider.style.transform = translateX(-${currentIndex * 100}%);
+            slider.style.transform =`translateX(-${currentIndex * 100}%)`;
         }
 
         // (Optional) Automatic slider - Har 3 second mein apne aap badle
