@@ -139,6 +139,1251 @@
             moveSlide(1);
         }, 3000); 
     </script>
+<style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
 
+        .header {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            /* Aap ise apne hisaab se chota/bada kar sakte hain */
+            height: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slider-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Photo ko stretch hone se bachata hai */
+            flex-shrink: 0;
+        }
+
+        /* Buttons styling */
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        a img {
+            height: auto;
+            max-width: 100%;
+        }
+    </style>
+    <header class="header">
+        <a href="#"><img src="blog.jpg" alt=""></a>
+    </header>
+
+</head>
+
+<body>
+
+    <main>
+        <div class="slider-container">
+            <!-- Prev/Next Buttons -->
+            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+            <!-- Photos Wrapper -->
+            <div class="slider-wrapper" id="slider">
+                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
+                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+                <img src="r1.jpeg" alt="Photo 1">
+                <img src="r2.jpeg" alt="Photo 1">
+                <img src="r3.jpeg" alt="Photo 1">
+                <img src="r4.jpeg" alt="Photo 1">
+                <img src="r5.jpeg" alt="Photo 1">
+                <img src="r6.jpeg" alt="Photo 1">
+
+            </div>
+        </div>
+        <span>
+
+            <ol>
+                <li>Slide 2 (The Idea - 2019): Light background. Title "1 The Idea (2019)". Photo of founders Sandeep
+                    Singh and Nikki Arora Singh. Text explaining they founded it to bring the taste of meat from plants.
+                    Include a quote: "We wanted to create food that’s good for you, kind to animals and better for the
+                    planet."
+                </li>
+                <li>
+                    Slide 3 (How It Works): Title "2 How It Works". Show bowls of soy, peas, and grains. Icons for "100%
+                    Plant-Based", "No Animal Ingredients", "Rich in Protein", "Good for You & The Planet". Tagline:
+                    "Same great taste. No animal meat."
+
+                </li>
+                <li>
+                    Slide 4 (Products): Title "3 First Products (2020)". A grid of 6 food photos: Nuggets, Mince/Keema,
+                    Sausages, Momos, Kebabs, Soya Chaap. Tagline: "Tasty. Nutritious. 100% Plant-Based."
+
+                </li>
+                <li>
+                    Slide 5 (Celebrity Investment): Title "4 Celebrity Investment (February 2022)". Photo of Virat Kohli
+                    and Anushka Sharma. Text stating they joined as investors and brand ambassadors. Note: "Investment
+                    amount not publicly disclosed." Include a logo for Blue Tribe Foods.
+
+                </li>
+                <li>
+                    Slide 6 (Challenges & Growth): Split screen. Left side "5 Challenges & Response" with red icons for
+                    challenges (skepticism, price, distribution) and green checkmarks for solutions (R&D, education,
+                    wider range). Right side "6 Growth & The Road Ahead" with a target icon and text: "To become a ₹200
+                    crore company within 5 years." Bottom banner: "Plant-Based Food | Healthier People | A Kinder Planet
+                    | A Brighter Future".
+
+                </li>
+            </ol>
+
+
+
+
+        </span>
+
+    </main>
+    <script>
+        let currentIndex = 0;
+        const slider = document.getElementById('slider');
+        const totalImages = slider.children.length; // Yeh automatically 10 count karega
+
+        function moveSlide(direction) {
+            currentIndex += direction;
+
+            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
+            if (currentIndex >= totalImages) {
+                currentIndex = 0;
+            }
+
+            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
+            if (currentIndex < 0) {
+                currentIndex = totalImages - 1;
+            }
+
+            // Slider ko shift karo
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        // (Optional) Automatic slider - Har 3 second mein apne aap badle
+        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
+        setInterval(() => {
+            moveSlide(1);
+        }, 3000); 
+    </script>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .header {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            /* Aap ise apne hisaab se chota/bada kar sakte hain */
+            height: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slider-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Photo ko stretch hone se bachata hai */
+            flex-shrink: 0;
+        }
+
+        /* Buttons styling */
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        a img {
+            height: auto;
+            max-width: 100%;
+        }
+    </style>
+    </head>
+    <main>
+        <div class="slider-container">
+            <!-- Prev/Next Buttons -->
+            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+            <!-- Photos Wrapper -->
+            <div class="slider-wrapper" id="slider1">
+                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
+                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+                <img src="aa1.jpeg" alt="Photo 1">
+                <img src="aa2.jpeg" alt="Photo 1">
+                <img src="aa3.jpeg" alt="Photo 1">
+                <img src="aa4.jpeg" alt="Photo 1">
+                <img src="aa5.jpeg" alt="Photo 1">
+                <img src="aa6.jpeg" alt="Photo 1">
+
+            </div>
+        </div>
+        <span>
+            <ol>
+                <li> Slide 1 (Cover): Dark blue background with leafy greens. Bold white and green text "THE JOURNEY
+                    OF BLUE TRIBE FOODS". A tagline "From a simple idea to a plant-based revolution". Show a box of
+                    "Plant-Based Chicken Nuggets" with a bowl of nuggets and ketchup. Include logos for "E-Cell
+                    Oxford Group of Institutions" and "E-Cell IIT Bombay's National Entrepreneurship Challenge
+                    2026".
+                </li>
+                <li>
+                    Slide 2 (The Idea - 2019): Light background. Title "1 The Idea (2019)". Photo of founders
+                    Sandeep Singh and Nikki Arora Singh. Text explaining they founded it to bring the taste of meat
+                    from plants. Include a quote: "We wanted to create food that’s good for you, kind to animals and
+                    better for the planet."
+
+                </li>
+                <li>Slide 3 (How It Works): Title "2 How It Works". Show bowls of soy, peas, and grains. Icons for
+                    "100% Plant-Based", "No Animal Ingredients", "Rich in Protein", "Good for You & The Planet".
+                    Tagline: "Same great taste. No animal meat."
+                </li>
+
+                <li>Slide 4 (Products): Title "3 First Products (2020)". A grid of 6 food photos: Nuggets,
+                    Mince/Keema, Sausages, Momos, Kebabs, Soya Chaap. Tagline: "Tasty. Nutritious. 100%
+                    Plant-Based."
+                </li>
+                <li>Slide 5 (Celebrity Investment): Title "4 Celebrity Investment (February 2022)". Photo of Virat
+                    Kohli and Anushka Sharma. Text stating they joined as investors and brand ambassadors. Note:
+                    "Investment amount not publicly disclosed." Include a logo for Blue Tribe Foods.
+                </li>
+                <li>Slide 6 (Challenges & Growth): Split screen. Left side "5 Challenges & Response" with red icons
+                    for challenges (skepticism, price, distribution) and green checkmarks for solutions (R&D,
+                    education, wider range). Right side "6 Growth & The Road Ahead" with a target icon and text: "To
+                    become a ₹200 crore company within 5 years." Bottom banner: "Plant-Based Food | Healthier People
+                    | A Kinder Planet | A Brighter Future".
+                </li>
+            </ol>
+        </span>
+    </main>
+    <script>
+        let currentIndex1 = 0;
+        const slider1 = document.getElementById('slider1');
+        const totalImages1 = slider1.children.length; // Yeh automatically 10 count karega
+
+        function moveSlide1(direction) {
+            currentIndex1 += direction;
+
+            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
+            if (currentIndex1 >= totalImages) {
+                currentIndex1 = 0;
+            }
+
+            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
+            if (currentIndex1 < 0) {
+                currentIndex1 = totalImages - 1;
+            }
+
+            // Slider ko shift karo
+            slider1.style.transform = `translateX(-${currentIndex1 * 100}%)`;
+        }
+
+        // (Optional) Automatic slider - Har 3 second mein apne aap badle
+        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
+        setInterval(() => {
+            moveSlide1(1);
+        }, 3000); 
+    </script>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .header {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            /* Aap ise apne hisaab se chota/bada kar sakte hain */
+            height: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slider-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Photo ko stretch hone se bachata hai */
+            flex-shrink: 0;
+        }
+
+        /* Buttons styling */
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        a img {
+            height: auto;
+            max-width: 100%;
+        }
+    </style>
+    <main>
+        <div class="slider-container">
+            <!-- Prev/Next Buttons -->
+            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+            <!-- Photos Wrapper -->
+            <div class="slider-wrapper" id="slider2">
+                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
+                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+                <img src="agri1.jpeg" alt="Photo 1">
+                <img src="agri2.jpeg" alt="Photo 1">
+                <img src="agri3.jpeg" alt="Photo 1">
+                <img src="agri4.jpeg" alt="Photo 1">
+                <img src="agri5.jpeg" alt="Photo 1">
+                <img src="agri6.jpeg" alt="Photo 1">
+
+            </div>
+        </div>
+        <span>
+
+            <ol>
+                <li>Slide 1 (The Problem): Show a farmer in a field carrying a heavy blue pesticide sprayer tank
+                    on his back. Headline: "The Problem". Text explains he saw his father and other farmers
+                    struggling with heavy tanks causing physical strain, health risks, and time wastage. Tagline
+                    at the bottom: "That's when the idea began..."
+                </li>
+                <li>Slide 2 (The Farmer's Son): A portrait of a young Indian man, Kamlesh Nanasaheb Ghumare,
+                    looking thoughtful. Title: "The Farmer's Son". Include his name in bold yellow. Icons for
+                    location (Born in Devrapade village, Maharashtra), education (Studied at NS Deshmukh
+                    Vidyalaya, left BCA in 2nd year to solve agricultural problems), and a yellow badge saying
+                    "Farmer Innovator Entrepreneur".
+                </li>
+                <li>Slide 3 (The Journey of Innovation): Title: "The Journey of Innovation - With limited
+                    resources, he built his own solutions." Show three images: 1) A bicycle-based pesticide
+                    spraying cart made from scrap (First Prototype). 2) A young man welding (Years of Hard Work
+                    - ~7 years refining design). 3) A green multipurpose agricultural cart labeled "Bharat K-2"
+                    (Improved Version). Tagline: "Turning a simple idea into a real solution!"
+                </li>
+                <li>Slide 4 (Shark Tank India): Title: "Shark Tank India". Show a photo of Kamlesh and his
+                    cousin Naru on the TV show stage. Include a photo of Shark Peyush Bansal making an offer.
+                    Text box: "₹10 Lakh for 40% equity + ₹20 Lakh interest-free loan". Tagline: "More than
+                    money, it gave him mentorship, exposure and a bigger dream."
+                </li>
+                <li>Slide 5 (KG Agrotech & Bharat K-2): A large image of the green "Bharat K-2" agricultural
+                    cart in a field. Title: "KG Agrotech & Bharat K-2". Logo for "KG Agrotech - Innovating for
+                    Better Farming". Key Features box: Affordable, Helps in spraying/seed sowing/transporting,
+                    Built for small and marginal farmers. Tagline: "Better Tools -> Better Farming -> A Brighter
+                    Future".
+                </li>
+                <li>Slide 6 (Lessons & Legacy): A portrait of Kamlesh with a sunset field background. Title:
+                    "Lessons & Legacy". A quote: "Big dreams don't need big resources, just a problem, passion
+                    and persistence." - Jugaadu Kamlesh. A "What We Can Learn" section with icons: Spot real
+                    problems, Learn by doing, Keep improving, Use the right support to scale. Tagline: "From a
+                    small village idea to a national inspiration. The journey continues..."
+                </li>
+            </ol>
+
+        </span>
+
+    </main>
+    <script>
+        let currentIndex2 = 0;
+        const slider2 = document.getElementById('slider2');
+        const totalImages2 = slider.children.length; // Yeh automatically 10 count karega
+
+        function moveSlide2(direction) {
+            currentIndex2 += direction;
+
+            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
+            if (currentIndex2 >= totalImages2) {
+                currentIndex2 = 0;
+            }
+
+            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
+            if (currentIndex2 < 0) {
+                currentIndex2 = totalImages2 - 1;
+            }
+
+            // Slider ko shift karo
+            slider2.style.transform = `translateX(-${currentIndex2 * 100}%)`;
+        }
+
+        // (Optional) Automatic slider - Har 3 second mein apne aap badle
+        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
+        setInterval(() => {
+            moveSlide2(1);
+        }, 3000); 
+    </script>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .header {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            /* Aap ise apne hisaab se chota/bada kar sakte hain */
+            height: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slider-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Photo ko stretch hone se bachata hai */
+            flex-shrink: 0;
+        }
+
+        /* Buttons styling */
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        a img {
+            height: auto;
+            max-width: 100%;
+        }
+    </style>
+
+
+    </head>
+
+
+
+    <main>
+        <div class="slider-container">
+            <!-- Prev/Next Buttons -->
+            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+            <!-- Photos Wrapper -->
+            <div class="slider-wrapper" id="slider3">
+                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
+                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+                <img src="zepto1.jpeg" alt="Photo 1">
+                <img src="zepto2.jpeg" alt="Photo 1">
+                <img src="zepto3.jpeg" alt="Photo 1">
+                <img src="zepto4.jpeg" alt="Photo 1">
+                <img src="zepto5.jpeg" alt="Photo 1">
+            </div>
+        </div>
+        <span>
+            <ol>
+                <li>
+                    Slide 1 (The First Challenge - No Money): Dark, moody lighting. Two young Indian men
+                    (Kaivalya Vohra and Aadit Palicha) looking intensely at a laptop in a dimly lit room.
+                    Title: "The First Challenge - No Money". Text: "They had no capital, no office, no team,
+                    and no investors. Just their laptops, skills and a strong belief in their idea." Icons
+                    for No funding, No team, No infrastructure, Doubts & criticism. A quote card: "We didn't
+                    have money, but we had time, energy and a crazy idea." - Kaivalya Vohra. Tagline: "But
+                    they didn't quit. They kept going."
+                </li>
+                <li>
+                    Slide 2 (The Turning Point - Facing the Real World): Bright, clean background. Title:
+                    "The Turning Point - Facing the Real World". A large smartphone mockup displaying the
+                    Zepto app interface with "10 Minute Delivery" and categories like Groceries, Snacks,
+                    Beauty. A paper grocery bag with the Zepto logo and fresh vegetables/produce next to it.
+                    Text: "They realised people needed everyday essentials delivered fast. So they built a
+                    platform for 10-minute grocery delivery." A quote: "We didn't just build an app, we
+                    built a solution to a real problem." Checklist: Built the MVP, Tested with early
+                    customers, Improved the app & delivery, Solved real customer problems. Tagline: "No big
+                    office. No big team. Just execution."
+                </li>
+                <li>
+                    Slide 3 (The Struggle - Money Crisis & Fundraising): Dark, dramatic background of a city
+                    skyline at night with neon purple lighting. Title: "The Struggle - Money Crisis &
+                    Fundraising". Left side: "Money Crisis" with bullet points (High operational costs,
+                    Frequent cash burn, Needed more capital to scale). Right side: "Fundraising Journey"
+                    timeline: Seed Round (2021 - $60M), Series A (2022 - $200M), Series B (2023 - $340M),
+                    Series C (2024 - $665M). A quote: "There were days when we had to make hard choices.
+                    Every rupee mattered." Tagline: "It wasn't easy. But they never gave up."
+                </li>
+                <li>
+                    Slide 4 (The Founders - Two Friends, One Dream): A portrait of the two founders,
+                    Kaivalya Vohra and Aadit Palicha, wearing black Zepto hoodies, standing confidently
+                    behind a laptop with the Zepto logo. Title: "Zepto - 10 Minute Delivery". Text pointing
+                    to them: "Kaivalya Vohra (19) IIT Bombay" and "Aadit Palicha (19) IIT Bombay". Large
+                    pink text: "Two Friends. One Dream. Zero Money. A Billion Dollar Company." A pink
+                    brush-stroke box with: "The idea wasn't just to build a company, it was to build a
+                    better way of living." Tagline: "Two young minds. One big dream."
+                </li>
+                <li>
+                    Slide 5 (The Breakthrough - Scaling Fast): Uplifting, cinematic shot of a fleet of Zepto
+                    delivery riders on motorcycles, wearing purple uniforms and helmets, driving towards a
+                    glowing city skyline at sunrise/sunset. Title: "The Breakthrough - Scaling Fast". Text:
+                    "From 1 city to 100+ cities. From a small team to a 10,000+ workforce. Zepto grew at
+                    lightning speed." A purple map of India with location pins. Stats grid: 100+ Cities,
+                    10M+ Monthly Active Users, 10K+ Delivery Partners, 500+ SKUs. Tagline: "From 1 city to
+                    100+. In just 2 years."
+                </li>
+            </ol>
+
+        </span>
+
+    </main>
+    <script>
+        let currentIndex3 = 0;
+        const slider3 = document.getElementById('slider3');
+        const totalImages3 = slider3.children.length; // Yeh automatically 10 count karega
+
+        function moveSlide3(direction) {
+            currentIndex3 += direction;
+
+            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
+            if (currentIndex3 >= totalImages3) {
+                currentIndex3 = 0;
+            }
+
+            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
+            if (currentIndex3 < 0) {
+                currentIndex3 = totalImages3 - 1;
+            }
+
+            // Slider ko shift karo
+            slider3.style.transform = `translateX(-${currentIndex3 * 100}%)`;
+        }
+
+        // (Optional) Automatic slider - Har 3 second mein apne aap badle
+        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
+        setInterval(() => {
+            moveSlide3(1);
+        }, 3000); 
+    </script>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .header {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            /* Aap ise apne hisaab se chota/bada kar sakte hain */
+            height: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slider-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Photo ko stretch hone se bachata hai */
+            flex-shrink: 0;
+        }
+
+        /* Buttons styling */
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        a img {
+            height: auto;
+            max-width: 100%;
+        }
+    </style>
+    <main>
+        <div class="slider-container">
+            <!-- Prev/Next Buttons -->
+            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+            <!-- Photos Wrapper -->
+            <div class="slider-wrapper" id="slider4">
+                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
+                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+                <img src="dmart1.jpeg" alt="Photo 1">
+                <img src="dmart2.jpeg" alt="Photo 1">
+                <img src="dmart3.jpeg" alt="Photo 1">
+                <img src="dmart4.jpeg" alt="Photo 1">
+                <img src="dmart5.jpeg" alt="Photo 1">
+            </div>
+        </div>
+        <span>
+            <ol>
+                <li>
+                    Slide No. 01 of a premium entrepreneurship presentation titled “Who Is the Founder of DMart?”
+                    featuring Radhakishan Damani. Use a 4:5 vertical layout, ivory background, dark forest-green
+                    typography, and realistic photography. Place the E-Cell logo at the top-left and E-Cell IIT Bombay
+                    National Entrepreneurship Challenge 2026 logo at the top-right. Show Damani's portrait on the right
+                    and a DMart store at the bottom. On the left, include Born: 12 March 1954, Bhopal, Madhya Pradesh;
+                    Education: B.Com. (Hons), Sydenham College, Mumbai; Early Career: Started stockbroking in 1980. Add
+                    the tagline “From Stock Markets to Retail — A Journey Built on Vision, Discipline and Patience.”
+                    Professional, readable, clean infographic design.
+                </li>
+                <li>
+                    Slide No. 02 titled “The Struggle Behind Success” with subtitle “Problem | Failure | Solution.” Use
+                    a dark charcoal background and three vertical cards: red for THE PROBLEM, yellow for THE FAILURE,
+                    and emerald green for THE SOLUTION. Place E-Cell and NEC 2026 logos at the top. Explain the
+                    challenges of India's fragmented retail market, the operational difficulties of early retail
+                    ventures, and DMart's value-focused approach through competitive prices, high sales volume, and
+                    efficient operations. Mention that the first DMart store opened in 2002. Include suitable icons, a
+                    traditional Indian market photograph, a business setback image, and the phrase “He Turned a Problem
+                    into an Opportunity.” Premium, high-contrast infographic with readable text.
+                </li>
+                <li>
+                    Slide No. 03 titled “The Product & Customer Experience.” Use a cream background with forest-green
+                    accents. Place E-Cell branding at the top and the DMart wordmark prominently below the title, with
+                    the tagline “Quality | Variety | Lowest Prices.” Show a realistic Indian supermarket interior with a
+                    customer pushing a shopping trolley on the left. On the right, add two sections: “What Is DMart?”
+                    describing its value-retail model and everyday products, and “Why Customers Choose It” listing
+                    competitive prices, wide product selection, organized aisles, quality everyday products, and
+                    convenient shopping. At the bottom, include a customer-experience panel with an illustrative
+                    testimonial and the slogan “Simple Idea. Big Impact.” Modern typography, green checkmarks, balanced
+                    layout, professional presentation quality.
+                </li>
+                <li>
+                    Slide No. 04 titled “From One Store to a National Brand” with subtitle “Expansion | Growth | Net
+                    Worth.” Use an ivory background, forest-green accents, and a subtle DMart storefront photograph.
+                    Place E-Cell and NEC 2026 logos at the top. Create a horizontal business timeline beginning with
+                    2002 — First DMart store in Mumbai, followed by verified expansion milestones through 2025. Include
+                    a clean green bar chart showing store expansion or Radhakishan Damani's net worth, using only
+                    reliable, dated, verified figures. Add three statistic blocks for store count, geographic presence,
+                    and customer reach with dates and sources. Finish with a green brushstroke banner reading “Growth Is
+                    Built on Consistency.” Accurate data, clear chart labels, and premium infographic design.
+                </li>
+                <li>
+                    Slide No. 05 titled “Consistency, Hard Work & Legacy.” Use a warm ivory background, forest-green
+                    typography, and realistic supermarket photography. Place E-Cell and NEC 2026 logos at the top. Show
+                    a realistic portrait of Radhakishan Damani in a white shirt beside a shopping trolley on the right.
+                    On the left, present four leadership principles with green icons: 1. Disciplined Investor — patient
+                    decisions and long-term thinking; 2. Hands-on Approach — focus on business operations; 3. No
+                    Shortcuts — hard work and consistency; 4. Focus on People — creating value for customers, employees,
+                    partners, and society. Add the banner “One Brand. Millions of Lives.” At the bottom, show icons for
+                    groceries, household essentials, apparel, and everyday products. Finish with “Vision + Hard Work +
+                    Consistency = Lasting Impact.” Inspirational, polished closing slide with readable text.
+                </li>
+            </ol>
+
+        </span>
+
+    </main>
+    <script>
+        let currentIndex4 = 0;
+        const slider4 = document.getElementById('slider4');
+        const totalImages4 = slider4.children.length; // Yeh automatically 10 count karega
+
+        function moveSlide4(direction) {
+            currentIndex4 += direction;
+
+            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
+            if (currentIndex4 >= totalImages4) {
+                currentIndex4 = 0;
+            }
+
+            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
+            if (currentIndex4 < 0) {
+                currentIndex4 = totalImages4 - 1;
+            }
+
+            // Slider ko shift karo
+            slider4.style.transform = `translateX(-${currentIndex4 * 100}%)`;
+        }
+
+        // (Optional) Automatic slider - Har 3 second mein apne aap badle
+        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
+        setInterval(() => {
+            moveSlide4(1);
+        }, 3000); 
+    </script>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .header {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            /* Aap ise apne hisaab se chota/bada kar sakte hain */
+            height: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slider-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Photo ko stretch hone se bachata hai */
+            flex-shrink: 0;
+        }
+
+        /* Buttons styling */
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        a img {
+            height: auto;
+            max-width: 100%;
+        }
+    </style>
+    <main>
+        <div class="slider-container">
+            <!-- Prev/Next Buttons -->
+            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+            <!-- Photos Wrapper -->
+            <div class="slider-wrapper" id="slider5">
+                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
+                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+                <img src="take1.jpeg" alt="Photo 1">
+                <img src="take2.jpeg" alt="Photo 1">
+                <img src="take3.jpeg" alt="Photo 1">
+                <img src="take4.jpeg" alt="Photo 1">
+                <img src="take5.jpeg" alt="Photo 1">
+                <img src="take6.jpeg" alt="Photo1">
+            </div>
+        </div>
+        <span>
+            <ol>
+                <li>
+                    1. Defining the Entrepreneurial Mindset
+
+                    · Explain that entrepreneurship is a journey, not a single moment.
+                    · Emphasize that mindset matters as much as the idea.
+                    · Highlight the four core traits of an entrepreneur:
+                    · Curiosity: Ask better questions.
+                    · Creativity: Imagine better possibilities.
+                    · Courage: Take calculated risks.
+                    · Persistence: Keep learning after setbacks.
+                    · Introduce the continuous cycle: Start • Learn • Improve • Repeat
+                </li>
+                <li>
+                    2. Identifying the Problem and Opportunity
+
+                    · Stress that every strong startup begins with a clear understanding of a real-world problem.
+                    · Outline the process of finding opportunity: An entrepreneur sees a gap where others see
+                    difficulty.
+                    · Detail the four-step process for turning an idea into an opportunity:
+                    1. Notice: Observe a real problem.
+                    2. Understand: Know the people affected.
+                    3. Create: Design a practical solution.
+                    4. Test: Learn, improve, and repeat.
+                    · Include the guiding question: 'Whose problem am I solving?'
+                </li>
+                <li>
+                    3. From Idea to Impact
+
+                    · Explain that the goal is not just to launch something, but to create lasting value.
+                    · Define the components of true impact: People, Change, Value, and Growth.
+                    · Emphasize thinking beyond the first customer to build something people remember.
+                    · Outline the progression: Idea → Action → Learning → Impact.
+
+                </li>
+                <li>
+                    3. From Idea to Impact
+
+                    · Explain that the goal is not just to launch something, but to create lasting value.
+                    · Define the components of true impact: People, Change, Value, and Growth.
+                    · Emphasize thinking beyond the first customer to build something people remember.
+                    · Outline the progression: Idea → Action → Learning → Impact.
+
+                </li>
+            </ol>
+
+        </span>
+
+    </main>
+    <script>
+        let currentIndex5 = 0;
+        const slider5 = document.getElementById('slider5');
+        const totalImages5 = slider5.children.length; // Yeh automatically 10 count karega
+
+        function moveSlide5(direction) {
+            currentIndex5 += direction;
+
+            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
+            if (currentIndex5 >= totalImages5) {
+                currentIndex5 = 0;
+            }
+
+            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
+            if (currentIndex5 < 0) {
+                currentIndex5 = totalImages5 - 1;
+            }
+
+            // Slider ko shift karo
+            slider5.style.transform = `translateX(-${currentIndex5 * 100}%)`;
+        }
+
+        // (Optional) Automatic slider - Har 3 second mein apne aap badle
+        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
+        setInterval(() => {
+            moveSlide5(1);
+        }, 3000); 
+    </script>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .header {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            /* Aap ise apne hisaab se chota/bada kar sakte hain */
+            height: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slider-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Photo ko stretch hone se bachata hai */
+            flex-shrink: 0;
+        }
+
+        /* Buttons styling */
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        a img {
+            height: auto;
+            max-width: 100%;
+        }
+    </style>
+    <main>
+        <div class="slider-container">
+            <!-- Prev/Next Buttons -->
+            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+            <!-- Photos Wrapper -->
+            <div class="slider-wrapper" id="slider6">
+                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
+                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+                <img src="sugar1.jpeg" alt="Photo 1">
+                <img src="sugar2.jpeg" alt="Photo 1">
+                <img src="sugar3.jpeg" alt="Photo 1">
+                <img src="sugar4.jpeg" alt="Photo 1">
+                <img src="sugar5.jpeg" alt="Photo 1">
+            </div>
+        </div>
+        <span>
+            <ol>
+                <li>
+                    1. Introduction & The Founder's Vision
+
+                    · Subject: Highlight Vineeta Singh, Co-founder & CEO of SUGAR Cosmetics.
+                    · The Vision: Frame her journey as a mission to build a brand that every Indian woman could feel
+                    proud of, creating 'Bold Makeup for the Modern Indian Woman.'
+                    · Founder's Background:
+                    · Education: B.Tech in Electronics & Communication from IIT Madras.
+                    · Early Career: Gained corporate experience at Bain & Company and Flipkart.
+                    · The Big Dream: Wanted to build a brand that celebrates Indian women and makes beauty accessible to
+                    all.
+
+                </li>
+                <li>
+                    2. Company Overview & Milestones
+
+                    · About the Company: SUGAR Cosmetics is an Indian beauty brand founded in 2012 by Vineeta Singh and
+                    Kaushik Mukherjee. It is known for high-quality, long-lasting, and inclusive makeup products
+                    designed specifically for Indian skin tones, preferences, and lifestyles.
+                    · Key Details: Founded in 2012, headquartered in Gurugram, India, operating in the Beauty &
+                    Cosmetics industry.
+                    · Timeline of Growth:
+                    · 2012: Launched with 10 products.
+                    · 2015: Expanded product range and offline presence.
+                    · 2017: Entered online marketplaces and grew across India.
+                    · 2019: Opened first physical stores and expanded product range.
+                    · 2021+: Grew into a household name with a strong global presence.
+                </li>
+                <li>
+                    3. Products, Innovation & Core Values
+
+                    · Product Philosophy: 'Makeup for every mood, every skin tone, every you.'
+                    · Product Categories:
+                    · Face: Foundations, Concealers, Primers, Compact.
+                    · Lips: Lipsticks, Lip Crayons, Lip Glosses.
+                    · Eyes: Eyeshadow Palettes, Kajal, Eyeliners, Mascara.
+                    · Tools & Accessories: Brushes, Sponges, Bags.
+                    · Core Values (The 'Clean' Promise): Cruelty-Free, Paraben-Free, Vegan, Dermatologically Tested, and
+                    Made for Indian Skin.
+                </li>
+                <li>
+                    4. Customer Validation & Market Reception
+
+                    · Reviews: Highlight the strong customer feedback with an average rating of 4.5/5 from over
+                    1,20,000+ reviews.
+                    · Key Metrics: High scores for Product Quality (92%), Packaging (90%), Shade Range (88%), Longevity
+                    (85%), and Value for Money (82%).
+                    · Testimonials: Include snippets like 'Finally a brand that understands Indian skin tones!' and
+                    'Stays for hours and the shades are just perfect!' to demonstrate real customer love.
+                </li>
+                <li>
+                    5. Financials & Profitability
+
+                    · Growth Trajectory: Show a steady increase in Estimated Annual Revenue (INR Cr) from 2017 through
+                    2023.
+                    · Valuation: Current estimated valuation of ₹2,000+ Cr (2023-24).
+                    · Financial Health: Bootstrapped initially, later raised funds (Series A & B). The company is
+                    profitable with strong retail and online sales.
+                </li>
+            </ol>
+
+        </span>
+
+    </main>
+    <script>
+        let currentIndex6 = 0;
+        const slider6 = document.getElementById('slider6');
+        const totalImages6 = slider6.children.length; // Yeh automatically 10 count karega
+
+        function moveSlide6(direction) {
+            currentIndex6 += direction;
+
+            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
+            if (currentIndex6 >= totalImages6) {
+                currentIndex6 = 0;
+            }
+
+            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
+            if (currentIndex6 < 0) {
+                currentIndex6 = totalImages6 - 1;
+            }
+
+            // Slider ko shift karo
+            slider6.style.transform = `translateX(-${currentIndex6 * 100}%)`;
+        }
+
+        // (Optional) Automatic slider - Har 3 second mein apne aap badle
+        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
+        setInterval(() => {
+            moveSlide6(1);
+        }, 3000); 
+    </script>
 </body>
 </html>
