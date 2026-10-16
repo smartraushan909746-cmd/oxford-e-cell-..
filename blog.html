@@ -1385,5 +1385,596 @@
             moveSlide6(1);
         }, 3000); 
     </script>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .header {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            /* Aap ise apne hisaab se chota/bada kar sakte hain */
+            height: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slider-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Photo ko stretch hone se bachata hai */
+            flex-shrink: 0;
+        }
+
+        /* Buttons styling */
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        a img {
+            height: auto;
+            max-width: 100%;
+        }
+    </style>
+    <main>
+        <h1>Bhavish Aggarwal</h1>
+        <div class="slider-container">
+            <!-- Prev/Next Buttons -->
+            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+            <!-- Photos Wrapper -->
+            <div class="slider-wrapper" id="slider7">
+                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
+                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+                <img src="bhavish1.jpeg" alt="Photo 1">
+                <img src="bhavish2.jpeg" alt="Photo 1">
+                <img src="bhavish3.jpeg" alt="Photo 1">
+                <img src="bhavish4.jpeg" alt="Photo 1">
+                <img src="bhavish5.jpeg" alt="Photo 1">
+                <img src="bhavish6.jpeg" alt="Photo 1">
+            </div>
+        </div>
+        <span>
+            <ol>
+                <li>
+                    Slide 1 (01/06): Title Slide
+
+                    · Heading: FOUNDER SUCCESS STORY
+                    · Subject: Bhavish Aggarwal — Founder, Ola
+                    · Tagline: A bad road trip turned into one of India's biggest startups.
+                </li>
+                <li>
+                    Slide 2 (02/06): The Beginning
+
+                    · Heading: THE BEGINNING
+                    · Subheading: An engineer with a frustrating cab ride.
+                    · Content: Bhavish Aggarwal, an IIT Bombay graduate working at Microsoft Research, booked a cab for
+                    a road trip to Bandipur. The car broke down, the driver overcharged him, and the experience was
+                    frustrating enough to plant an idea: India's cab-booking experience needed to be rebuilt from
+                    scratch.
+                </li>
+                <li>Slide 3 (03/06): The Journey
+
+                    · Heading: THE JOURNEY
+                    · Subheading: From a bad cab ride to a mobility giant
+                    · Timeline:
+                    · 2010: Quits Microsoft, founds OlaCabs with Ankit Bhati
+                    · 2011: Launches the Ola app in Mumbai
+                    · 2014–15: Scales across Indian cities, raises major funding
+                    · 2017+: Expands into Ola Electric — EV manufacturing
+                </li>
+                <li>
+
+                    Slide 4 (04/06): The Takeaway
+
+                    · Heading: THE TAKEAWAY
+                    · Quote: “The best startup ideas often come from your own everyday frustration.”
+                </li>
+                <li>
+                    Slide 5 (05/06): Why It Matters
+
+                    · Heading: WHY IT MATTERS
+                    · Key Point: He didn't wait for the perfect idea to arrive.
+                    · Explanation: Bhavish had a stable, prestigious job at Microsoft Research. He left it not because
+                    he had a perfect business plan, but because he'd lived a problem personally and couldn't ignore it.
+                    That's often where the strongest startups begin.
+                </li>
+                <li>
+                    Slide 6 (06/06): Conclusion & Call to Action
+
+                    · Message: Your daily frustration could be your next big idea.
+                    · Hashtags: #FounderStories #Entrepreneurship #ECellIITB #StartupIndia
+
+                </li>
+            </ol>
+
+
+        </span>
+
+    </main>
+    <script>
+        let currentIndex7 = 0;
+        const slider7 = document.getElementById('slider7');
+        const totalImages7 = slider7.children.length; // Yeh automatically 10 count karega
+
+        function moveSlide7(direction) {
+            currentIndex7 += direction;
+
+            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
+            if (currentIndex7 >= totalImages7) {
+                currentIndex7 = 0;
+            }
+
+            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
+            if (currentIndex7 < 0) {
+                currentIndex7 = totalImages7 - 1;
+            }
+
+            // Slider ko shift karo
+            slider7.style.transform = `translateX(-${currentIndex7 * 100}%)`;
+        }
+
+        // (Optional) Automatic slider - Har 3 second mein apne aap badle
+        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
+        setInterval(() => {
+            moveSlide7(1);
+        }, 3000); 
+    </script>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .header {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            /* Aap ise apne hisaab se chota/bada kar sakte hain */
+            height: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slider-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Photo ko stretch hone se bachata hai */
+            flex-shrink: 0;
+        }
+
+        /* Buttons styling */
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        a img {
+            height: auto;
+            max-width: 100%;
+        }
+    </style>
+    <main>
+        <h1>Ritesh Agarwal</h1>
+        <div class="slider-container">
+            <!-- Prev/Next Buttons -->
+            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+            <!-- Photos Wrapper -->
+            <div class="slider-wrapper" id="slider8">
+                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
+                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+                <img src="ritesh1.jpeg" alt="Photo 1">
+                <img src="ritesh2.jpeg" alt="Photo 1">
+                <img src="ritesh3.jpeg" alt="Photo 1">
+                <img src="ritesh4.jpeg" alt="Photo 1">
+                <img src="ritesh5.jpeg" alt="Photo 1">
+                <img src="ritesh6.jpeg" alt="">
+            </div>
+        </div>
+        <span>
+            <ol>
+                <li>
+                    Slide 1 (01/06): Title Slide
+
+                    · Heading: FOUNDER SUCCESS STORY
+                    · Subject: Ritesh Agarwal — Founder, OYO
+                    · Tagline: Dropped out at 19 to build something no one believed in yet.
+
+                </li>
+                <li>
+                    Slide 2 (02/06): The Beginning
+
+                    · Heading: THE BEGINNING
+                    · Subheading: No business family. No top-tier IIT degree.
+                    · Content: Ritesh started with a budget accommodation booking website that most people ignored. He
+                    wasn't chasing a perfect plan — he was chasing a problem he'd seen firsthand while backpacking
+                    across India as a teenager.
+                </li>
+                <li>
+                    Slide 3 (03/06): The Journey
+
+                    · Heading: THE JOURNEY
+                    · Subheading: From idea to global brand
+                    · Timeline:
+                    · Age 17: Backpacks across India, sees the budget-stay problem
+                    · Age 18: Drops out of college to build a booking platform
+                    · 2013: Launches OYO — few believe in the idea at first
+                    · Today: OYO operates across multiple countries globally
+                </li>
+                <li>
+                    Slide 4 (04/06): The Takeaway
+
+                    · Heading: THE TAKEAWAY
+                    · Quote: “You don't need the ‘right’ background to start — you need to start.”
+                </li>
+                <li>
+                    Slide 5 (05/06): Why It Matters
+
+                    · Heading: WHY IT MATTERS
+                    · Key Point: His story wasn't about a perfect plan.
+                    · Explanation: It was about starting messy, learning in public, and refusing to wait for permission
+                    to begin. Every founder’s early chapters look uncertain — the difference is whether they keep moving
+                    anyway.
+                </li>
+                <li>
+                    Slide 6 (06/06): Conclusion & Call to Action
+
+                    · Message: Start messy. Start now.
+                    · Hashtags: #FounderStories #Entrepreneurship #ECellIITB #StartupIndia
+
+                </li>
+
+            </ol>
+
+
+        </span>
+
+    </main>
+    <script>
+        let currentIndex8 = 0;
+        const slider8 = document.getElementById('slider8');
+        const totalImages8 = slider8.children.length; // Yeh automatically 10 count karega
+
+        function moveSlide8(direction) {
+            currentIndex8 += direction;
+
+            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
+            if (currentIndex8 >= totalImages8) {
+                currentIndex8 = 0;
+            }
+
+            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
+            if (currentIndex8 < 0) {
+                currentIndex8 = totalImages8 - 1;
+            }
+
+            // Slider ko shift karo
+            slider8.style.transform = `translateX(-${currentIndex8 * 100}%)`;
+        }
+
+        // (Optional) Automatic slider - Har 3 second mein apne aap badle
+        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
+        setInterval(() => {
+            moveSlide8(1);
+        }, 3000); 
+    </script>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .header {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            /* Aap ise apne hisaab se chota/bada kar sakte hain */
+            height: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slider-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Photo ko stretch hone se bachata hai */
+            flex-shrink: 0;
+        }
+
+        /* Buttons styling */
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        a img {
+            height: auto;
+            max-width: 100%;
+        }
+    </style>
+    <main>
+        <h1>Elon Musk</h1>
+        <div class="slider-container">
+            <!-- Prev/Next Buttons -->
+            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+            <!-- Photos Wrapper -->
+            <div class="slider-wrapper" id="slider9">
+                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
+                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+                <img src="elon1.jpeg" alt="Photo 1">
+                <img src="elon2.jpeg" alt="Photo 1">
+                <img src="elon3.jpeg" alt="Photo 1">
+                <img src="elon4.jpeg" alt="Photo 1">
+                <img src="elon5.jpeg" alt="Photo 1">
+                <img src="elon6.jpeg" alt="photo 1">
+            </div>
+        </div>
+        <span>
+            <ol>
+                <li>
+                    Slide 1 (01/06): Title Slide
+
+                    · Heading: FOUNDER SUCCESS STORY
+                    · Subject: ELON MUSK
+                    · Tagline: From bold ideas to building companies that changed industries.
+                    · Key Themes Listed: VISION, EXECUTION, PERSISTENCE
+                </li>
+                <li>
+                    Slide 2 (02/06): Early Beginnings
+
+                    · Heading: It Started With Curiosity.
+                    · Subject: 1995 • ZIP2
+                    · Content: An early internet company Musk co-founded with his brother. It was later acquired by
+                    Compaq in 1999.
+                    · Key Lesson: Curiosity → Action. Exploring technology can become the first step toward
+                    entrepreneurship.
+                </li>
+                <li>
+                    Slide 3 (03/06): One Venture Led To Another
+
+                    · Heading: One Venture Led To Another.
+                    · Timeline/Companies:
+                    · 01 X.COM: Co-founded in 1999 as an online financial-services company.
+                    · 02 PAYPAL: X.com became part of the company that became PayPal.
+                    · Milestone: 2002 - PAYPAL ACQUIRED BY EBAY
+
+                </li>
+                <li>
+                    Slide 4 (04/06): Changing the Auto Industry
+
+                    · Heading: Changing The Way We Think About Cars.
+                    · Subject: TESLA • 2008
+                    · Content: Musk became Tesla’s CEO in 2008. Tesla focused on electric vehicles and sustainable
+                    energy.
+                    · Key Pillars:
+                    · 01 ELECTRIC: Accelerating the transition toward electric vehicles.
+                    · 02 SUSTAINABLE: Technology with a broader sustainable-energy vision.
+                    · 03 EXECUTION: Innovation backed by products, manufacturing and scale.
+                </li>
+                <li>
+                    Slide 5 (05/06): What Can Entrepreneurs Learn?
+
+                    · Heading: What Can Entrepreneurs Learn?
+                    · Key Lessons:
+                    · 01 THINK BIG: Test an idea’s potential.
+                    · 02 SOLVE REAL PROBLEMS: Build around meaningful needs.
+                    · 03 LEARN FROM SETBACKS: Turn challenges into feedback.
+                    · 04 KEEP BUILDING: Long-term goals need consistency.
+                    · 05 QUESTION THE ORDINARY: Ask: can this be done differently?
+                </li>
+                <li>
+                    Slide 6 (06/06): Conclusion
+
+                    · Heading: BIG VISIONS START SMALL.
+                    · Content: Building something ambitious takes more than an idea. It takes curiosity, persistence,
+                    learning and execution.
+                </li>
+
+            </ol>
+
+
+        </span>
+
+    </main>
+    <script>
+        let currentIndex9 = 0;
+        const slider9 = document.getElementById('slider9');
+        const totalImages9 = slider9.children.length; // Yeh automatically 10 count karega
+
+        function moveSlide9(direction) {
+            currentIndex9 += direction;
+
+            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
+            if (currentIndex9 >= totalImages9) {
+                currentIndex9 = 0;
+            }
+
+            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
+            if (currentIndex9 < 0) {
+                currentIndex9 = totalImages9 - 1;
+            }
+
+            // Slider ko shift karo
+            slider9.style.transform = `translateX(-${currentIndex9 * 100}%)`;
+        }
+
+        // (Optional) Automatic slider - Har 3 second mein apne aap badle
+        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
+        setInterval(() => {
+            moveSlide9(1);
+        }, 3000); 
+    </script>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .header {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            /* Aap ise apne hisaab se chota/bada kar sakte hain */
 </body>
 </html>
