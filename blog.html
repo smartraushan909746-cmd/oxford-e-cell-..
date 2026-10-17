@@ -44,7 +44,7 @@
         .slider-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Photo ko stretch hone se bachata hai */
+            object-fit: contain; /* Photo ko stretch hone se bachata hai */
             flex-shrink: 0;
         }
 
@@ -88,7 +88,7 @@
 <body>
 
     <main>
-         <h1>17/08/2026 Pallav Bihani</h1>
+         <h1> Pallav Bihani</h1><pre>05/08/2026</pre>
         <div class="slider-container">
         <!-- Prev/Next Buttons -->
         <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
@@ -183,7 +183,7 @@
         .slider-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             /* Photo ko stretch hone se bachata hai */
             flex-shrink: 0;
         }
@@ -229,14 +229,14 @@
 <body>
 
     <main>
-        <h1>17/08/2026 The London Store</h1>
+        <h1> The London Store</h1><pre>13/08/2026</pre>
         <div class="slider-container">
             <!-- Prev/Next Buttons -->
             <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
             <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
 
             <!-- Photos Wrapper -->
-            <div class="slider-wrapper" id="slider">
+            <div class="slider-wrapper" id="slider22">
                 <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
                  Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
                 <img src="r1.jpeg" alt="Photo 1">
@@ -298,7 +298,7 @@
             currentIndex22 += direction;
 
             // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-            if (currentIndex22 >= totalImages) {
+            if (currentIndex22 >= totalImages22) {
                 currentIndex22 = 0;
             }
 
@@ -314,7 +314,7 @@
         // (Optional) Automatic slider - Har 3 second mein apne aap badle
         // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
         setInterval(() => {
-            moveSlide(1);
+            moveSlide22(1);
         }, 3000); 
     </script>
     <style>
@@ -360,7 +360,7 @@
         .slider-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             /* Photo ko stretch hone se bachata hai */
             flex-shrink: 0;
         }
@@ -399,7 +399,7 @@
     </style>
     </head>
     <main>
-        <h1>23/08/2026 Celebrity Investment</h1>
+        <h1> Celebrity Investment</h1><pre>17/08/2026</pre>
         <div class="slider-container">
             <!-- Prev/Next Buttons -->
             <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
@@ -464,13 +464,13 @@
             currentIndex1 += direction;
 
             // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-            if (currentIndex1 >= totalImages) {
+            if (currentIndex1 >= totalImages1) {
                 currentIndex1 = 0;
             }
 
             // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
             if (currentIndex1 < 0) {
-                currentIndex1 = totalImages - 1;
+                currentIndex1 = totalImages1 - 1;
             }
 
             // Slider ko shift karo
@@ -526,7 +526,7 @@
         .slider-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             /* Photo ko stretch hone se bachata hai */
             flex-shrink: 0;
         }
@@ -564,7 +564,7 @@
         }
     </style>
     <main>
-        <h1>28/08/2026 The Problem</h1>
+        <h1>The Problem</h1><pre>23/08/2026</pre>
         <div class="slider-container">
             <!-- Prev/Next Buttons -->
             <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
@@ -628,7 +628,7 @@
     <script>
         let currentIndex2 = 0;
         const slider2 = document.getElementById('slider2');
-        const totalImages2 = slider.children.length; // Yeh automatically 10 count karega
+        const totalImages2 = slider2.children.length; // Yeh automatically 10 count karega
 
         function moveSlide2(direction) {
             currentIndex2 += direction;
@@ -696,7 +696,7 @@
         .slider-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             /* Photo ko stretch hone se bachata hai */
             flex-shrink: 0;
         }
@@ -740,7 +740,7 @@
 
 
     <main>
-        <h1>05/09/2026 The Breakthrough </h1>
+        <h1>The Breakthrough </h1><pre>28/08/2026</pre>
         <div class="slider-container">
             <!-- Prev/Next Buttons -->
             <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
@@ -882,7 +882,7 @@
         .slider-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             /* Photo ko stretch hone se bachata hai */
             flex-shrink: 0;
         }
@@ -920,7 +920,7 @@
         }
     </style>
     <main>
-        <h1>13/09/2026 Radhakishan Damani</h1>
+        <h1>Radhakishan Damani</h1><pre>05/09/2026</pre>
         <div class="slider-container">
             <!-- Prev/Next Buttons -->
             <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
@@ -1067,7 +1067,7 @@
         .slider-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             /* Photo ko stretch hone se bachata hai */
             flex-shrink: 0;
         }
@@ -1105,7 +1105,7 @@
         }
     </style>
     <main>
-        <h1>19/09/2026</h1>
+        <h1>The Takeaway</h1><pre>13/09/2026</pre>
         <div class="slider-container">
             <!-- Prev/Next Buttons -->
             <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
@@ -1244,7 +1244,7 @@
         .slider-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             /* Photo ko stretch hone se bachata hai */
             flex-shrink: 0;
         }
@@ -1282,7 +1282,7 @@
         }
     </style>
     <main>
-        <h1>25/09/2026 Vineeta singh</h1>
+        <h1>Vineeta singh</h1><pre>13/09/2026</pre>
         <div class="slider-container">
             <!-- Prev/Next Buttons -->
             <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
@@ -1436,7 +1436,7 @@
         .slider-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             /* Photo ko stretch hone se bachata hai */
             flex-shrink: 0;
         }
@@ -1474,7 +1474,7 @@
         }
     </style>
     <main>
-        <h1>02/10/2026 Bhavish Aggarwal</h1>
+        <h1>Bhavish Aggarwal</h1><pre>25/09/2026</pre>
         <div class="slider-container">
             <!-- Prev/Next Buttons -->
             <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
@@ -1621,7 +1621,7 @@
         .slider-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             /* Photo ko stretch hone se bachata hai */
             flex-shrink: 0;
         }
@@ -1659,7 +1659,7 @@
         }
     </style>
     <main>
-        <h1>10/10/2026 Ritesh Agarwal</h1>
+        <h1>Ritesh Agarwal</h1><pre>10/10/2026</pre>
         <div class="slider-container">
             <!-- Prev/Next Buttons -->
             <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
@@ -1807,7 +1807,7 @@
         .slider-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             /* Photo ko stretch hone se bachata hai */
             flex-shrink: 0;
         }
@@ -1845,7 +1845,7 @@
         }
     </style>
     <main>
-        <h1> 14/10/2026 Elon Musk </h1>
+        <h1>  Elon Musk </h1><pre>14/10/2026</pre>
         <div class="slider-container">
             <!-- Prev/Next Buttons -->
             <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
