@@ -236,7 +236,7 @@
             <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
 
             <!-- Photos Wrapper -->
-            <div class="slider-wrapper" id="slider22">
+            <div class="slider-wrapper" id="slider15">
                 <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
                  Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
                 <img src="r1.jpeg" alt="Photo 1">
@@ -290,31 +290,31 @@
 
     </main>
     <script>
-        let currentIndex22= 0;
-        const slider22 = document.getElementById('slider22');
-        const totalImages22 = slider22.children.length; // Yeh automatically 10 count karega
+        let currentIndex15 = 0;
+        const slider15 = document.getElementById('slider15');
+        const totalImages15 = slider15.children.length; // Yeh automatically 10 count karega
 
-        function moveSlide22(direction) {
-            currentIndex22 += direction;
+        function moveSlide15(direction) {
+            currentIndex15 += direction;
 
             // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-            if (currentIndex22 >= totalImages22) {
-                currentIndex22 = 0;
+            if (currentIndex15 >= totalImages15) {
+                currentIndex15 = 0;
             }
 
             // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
-            if (currentIndex22 < 0) {
-                currentIndex22 = totalImages22 - 1;
+            if (currentIndex15 < 0) {
+                currentIndex15 = totalImages15 - 1;
             }
 
             // Slider ko shift karo
-            slider22.style.transform = `translateX(-${currentIndex22 * 100}%)`;
+            slider15.style.transform = `translateX(-${currentIndex15 * 100}%)`;
         }
 
         // (Optional) Automatic slider - Har 3 second mein apne aap badle
         // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
         setInterval(() => {
-            moveSlide22(1);
+            moveSlide15(1);
         }, 3000); 
     </script>
     <style>
