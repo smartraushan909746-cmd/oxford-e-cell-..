@@ -1,70 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10 Photo Slider</title>
+    <title>Blog</title>
     <style>
-        /* Basic styling */
+        /* बेसिक रीसेट और लेआउट */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            justify-content: center;
-            align-items: center;
             background-color: #f4f4f4;
-            margin: 0;
-        }
-        .header{
-            width: 100%;
-            overflow: hidden;
-        }
-        .header img{
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
+            padding: 10px;
+            /* मोबाइल पर किनारों से जगह छोड़ने के लिए */
         }
 
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        /* मुख्य 12 कंटेनरों का लेआउट */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* हर स्लाइडर कंटेनर की स्टाइलिंग (मोबाइल पर स्क्रीन के हिसाब से चौड़ाई बदलेगी) */
         .slider-container {
             position: relative;
-            max-width: 600px; /* Aap ise apne hisaab se chota/bada kar sakte hain */
-            height: 400px;
-            margin: 20px auto;
+            width: 100%;
+            max-width: 100%;
+            height: 350px;
+            /* मोबाइल और लैपटॉप दोनों के लिए परफेक्ट हाइट */
             overflow: hidden;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: #111;
+            /* ताकि फोटो न कटने पर साइड में अच्छा बैकग्राउंड दिखे */
         }
 
+        /* स्लाइडर रैपर जो इमेज को एक लाइन में रखता है */
         .slider-wrapper {
             display: flex;
-            transition: transform 0.5s ease-in-out;
             height: 100%;
+            transition: transform 0.5s ease-in-out;
         }
 
+        /* फोटो स्टाइलिंग - फोटो कभी नहीं कटेगी और पूरी दिखेगी */
         .slider-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Photo ko stretch hone se bachata hai */
+            object-fit: contain;
+            /* फोटो को बिना काटे पूरा फिट करेगा */
+            background-color: #111;
+            /* खाली जगह पर डार्क बैकग्राउंड */
             flex-shrink: 0;
         }
 
-        /* Buttons styling */
+        /* Next / Prev बटन स्टाइलिंग */
         .btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.6);
             color: white;
             border: none;
-            padding: 10px 15px;
+            font-size: 20px;
+            padding: 8px 12px;
             cursor: pointer;
-            font-size: 18px;
             border-radius: 5px;
             z-index: 10;
         }
 
         .btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.9);
         }
 
         .prev-btn {
@@ -74,178 +94,64 @@
         .next-btn {
             right: 10px;
         }
-       
-        a img{
-            height: auto;
-            max-width: 100%;
-        }
-    </style>
-    <header class="header">
-        <a href="index.html"><img src="blog.png" alt=""></a>
-    </header>
 
-</head>
-<body>
-
-    <main>
-         <h1> Pallav Bihani</h1><pre>05/08/2026</pre>
-        <div class="slider-container">
-        <!-- Prev/Next Buttons -->
-        <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
-
-        <!-- Photos Wrapper -->
-        <div class="slider-wrapper" id="slider">
-            <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
-                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
-            <img src="blog1.jpeg" alt="Photo 1">
-            <img src="blog2.jpeg" alt="Photo 1">
-            <img src="blog3.jpeg" alt="Photo 1">
-            <img src="blog4.jpeg" alt="Photo 1">
-            <img src="blog5.jpeg" alt="Photo 1">
-           
-        </div>
-    </div>
-    <div class="blogwrite">
-        <p>Create a professional business case study infographic for a college seminar. Include company introduction, product portfolio, business growth timeline, revenue chart, expansion milestones, estimated valuation, and company headquarters. Use a dark textured background, white text, cyan highlights, realistic images, and a clean editorial layout. Make it visually impressive, informative, and suitable for a BCA student presentation.</p>
-
-    </div>
-
-    </main>
-    <script>
-        let currentIndex = 0;
-        const slider = document.getElementById('slider');
-        const totalImages = slider.children.length; // Yeh automatically 10 count karega
-
-        function moveSlide(direction) {
-            currentIndex += direction;
-
-            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-             if (currentIndex >= totalImages) {
-                currentIndex = 0;
-            }
-            
-            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
-            if (currentIndex < 0) {
-                currentIndex = totalImages - 1;
+        /* === मोबाइल स्क्रीन के लिए मीडिया क्वेरी (Media Query) === */
+        @media (max-width: 600px) {
+            .slider-container {
+                height: 250px;
+                /* छोटे फोन की स्क्रीन पर हाइट थोड़ी कम हो जाएगी ताकि सही दिखे */
             }
 
-            // Slider ko shift karo
-            slider.style.transform =`translateX(-${currentIndex * 100}%)`;
-        }
+            h1 {
+                font-size: 20px;
+            }
 
-        // (Optional) Automatic slider - Har 3 second mein apne aap badle
-        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
-        setInterval(() => {
-            moveSlide(1);
-        }, 3000); 
-    </script>
-<style>
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-            margin: 0;
+            .btn {
+                font-size: 16px;
+                padding: 6px 10px;
+            }
         }
 
         .header {
             width: 100%;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
             overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background-color: #111;
         }
 
         .header img {
             width: 100%;
             height: auto;
             display: block;
-            object-fit: cover;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 600px;
-            /* Aap ise apne hisaab se chota/bada kar sakte hain */
-            height: 400px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            background: white;
-        }
-
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%;
-        }
-
-        .slider-wrapper img {
-            width: 100%;
-            height: 100%;
             object-fit: contain;
-            /* Photo ko stretch hone se bachata hai */
-            flex-shrink: 0;
-        }
-
-        /* Buttons styling */
-        .btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            z-index: 10;
-        }
-
-        .btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev-btn {
-            left: 10px;
-        }
-
-        .next-btn {
-            right: 10px;
-        }
-
-        a img {
-            height: auto;
-            max-width: 100%;
         }
     </style>
     <header class="header">
         <a href="#"><img src="blog.jpg" alt=""></a>
     </header>
-
 </head>
 
 <body>
 
-    <main>
-        <h1> The London Store</h1><pre>13/08/2026</pre>
+   
+
+    <div class="main-container">
+
+        <!-- ================= CONTAINER 1 ================= -->
+         <h1>Sandeep Singh and Nikki Arora Singh   05/08/2026</h1>
         <div class="slider-container">
-            <!-- Prev/Next Buttons -->
-            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
-
-            <!-- Photos Wrapper -->
-            <div class="slider-wrapper" id="slider15">
-                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
-                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+            <button class="btn prev-btn">&#10094;</button>
+            <button class="btn next-btn">&#10095;</button>
+            <div class="slider-wrapper">
                 <img src="r1.jpeg" alt="Photo 1">
-                <img src="r2.jpeg" alt="Photo 1">
-                <img src="r3.jpeg" alt="Photo 1">
-                <img src="r4.jpeg" alt="Photo 1">
-                <img src="r5.jpeg" alt="Photo 1">
-                <img src="r6.jpeg" alt="Photo 1">
-
+                <img src="r2.jpeg" alt="Photo 2">
+                <img src="r3.jpeg" alt="Photo 3">
+                <img src="r4.jpeg" alt="Photo 4">
+                <img src="r5.jpeg" alt="Photo 5">
+                <img src="r6.jpeg" alt="Photo 6">
             </div>
         </div>
         <span>
@@ -282,140 +188,20 @@
 
                 </li>
             </ol>
-
-
-
-
         </span>
 
-    </main>
-    <script>
-        let currentIndex15 = 0;
-        const slider15 = document.getElementById('slider15');
-        const totalImages15 = slider15.children.length; // Yeh automatically 10 count karega
-
-        function moveSlide15(direction) {
-            currentIndex15 += direction;
-
-            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-            if (currentIndex15 >= totalImages15) {
-                currentIndex15 = 0;
-            }
-
-            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
-            if (currentIndex15 < 0) {
-                currentIndex15 = totalImages15 - 1;
-            }
-
-            // Slider ko shift karo
-            slider15.style.transform = `translateX(-${currentIndex15 * 100}%)`;
-        }
-
-        // (Optional) Automatic slider - Har 3 second mein apne aap badle
-        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
-        setInterval(() => {
-            moveSlide15(1);
-        }, 3000); 
-    </script>
-    <style>
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-
-        .header {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .header img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 600px;
-            /* Aap ise apne hisaab se chota/bada kar sakte hain */
-            height: 400px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            background: white;
-        }
-
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%;
-        }
-
-        .slider-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* Photo ko stretch hone se bachata hai */
-            flex-shrink: 0;
-        }
-
-        /* Buttons styling */
-        .btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            z-index: 10;
-        }
-
-        .btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev-btn {
-            left: 10px;
-        }
-
-        .next-btn {
-            right: 10px;
-        }
-
-        a img {
-            height: auto;
-            max-width: 100%;
-        }
-    </style>
-    </head>
-    <main>
-        <h1> Celebrity Investment</h1><pre>17/08/2026</pre>
+        <!-- ================= CONTAINER 2 ================= -->
+        <h1> Sandeep Singh and Nikki Arora Singh    13/08/2026</h1>
         <div class="slider-container">
-            <!-- Prev/Next Buttons -->
-            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
-
-            <!-- Photos Wrapper -->
-            <div class="slider-wrapper" id="slider1">
-                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
-                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+            <button class="btn prev-btn">&#10094;</button>
+            <button class="btn next-btn">&#10095;</button>
+            <div class="slider-wrapper">
                 <img src="aa1.jpeg" alt="Photo 1">
                 <img src="aa2.jpeg" alt="Photo 1">
                 <img src="aa3.jpeg" alt="Photo 1">
                 <img src="aa4.jpeg" alt="Photo 1">
                 <img src="aa5.jpeg" alt="Photo 1">
                 <img src="aa6.jpeg" alt="Photo 1">
-
             </div>
         </div>
         <span>
@@ -454,133 +240,19 @@
                 </li>
             </ol>
         </span>
-    </main>
-    <script>
-        let currentIndex1 = 0;
-        const slider1 = document.getElementById('slider1');
-        const totalImages1 = slider1.children.length; // Yeh automatically 10 count karega
 
-        function moveSlide1(direction) {
-            currentIndex1 += direction;
-
-            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-            if (currentIndex1 >= totalImages1) {
-                currentIndex1 = 0;
-            }
-
-            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
-            if (currentIndex1 < 0) {
-                currentIndex1 = totalImages1 - 1;
-            }
-
-            // Slider ko shift karo
-            slider1.style.transform = `translateX(-${currentIndex1 * 100}%)`;
-        }
-
-        // (Optional) Automatic slider - Har 3 second mein apne aap badle
-        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
-        setInterval(() => {
-            moveSlide1(1);
-        }, 3000); 
-    </script>
-    <style>
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-
-        .header {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .header img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 600px;
-            /* Aap ise apne hisaab se chota/bada kar sakte hain */
-            height: 400px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            background: white;
-        }
-
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%;
-        }
-
-        .slider-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* Photo ko stretch hone se bachata hai */
-            flex-shrink: 0;
-        }
-
-        /* Buttons styling */
-        .btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            z-index: 10;
-        }
-
-        .btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev-btn {
-            left: 10px;
-        }
-
-        .next-btn {
-            right: 10px;
-        }
-
-        a img {
-            height: auto;
-            max-width: 100%;
-        }
-    </style>
-    <main>
-        <h1>The Problem</h1><pre>23/08/2026</pre>
+        <!-- ================= CONTAINER 3 ================= -->
         <div class="slider-container">
-            <!-- Prev/Next Buttons -->
-            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
-
-            <!-- Photos Wrapper -->
-            <div class="slider-wrapper" id="slider2">
-                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
-                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+            <h1> Kamlesh Nanasaheb Ghumare    17/08/2026</h1>
+            <button class="btn prev-btn">&#10094;</button>
+            <button class="btn next-btn">&#10095;</button>
+            <div class="slider-wrapper">
                 <img src="agri1.jpeg" alt="Photo 1">
                 <img src="agri2.jpeg" alt="Photo 1">
                 <img src="agri3.jpeg" alt="Photo 1">
                 <img src="agri4.jpeg" alt="Photo 1">
                 <img src="agri5.jpeg" alt="Photo 1">
                 <img src="agri6.jpeg" alt="Photo 1">
-
             </div>
         </div>
         <span>
@@ -624,132 +296,13 @@
 
         </span>
 
-    </main>
-    <script>
-        let currentIndex2 = 0;
-        const slider2 = document.getElementById('slider2');
-        const totalImages2 = slider2.children.length; // Yeh automatically 10 count karega
 
-        function moveSlide2(direction) {
-            currentIndex2 += direction;
-
-            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-            if (currentIndex2 >= totalImages2) {
-                currentIndex2 = 0;
-            }
-
-            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
-            if (currentIndex2 < 0) {
-                currentIndex2 = totalImages2 - 1;
-            }
-
-            // Slider ko shift karo
-            slider2.style.transform = `translateX(-${currentIndex2 * 100}%)`;
-        }
-
-        // (Optional) Automatic slider - Har 3 second mein apne aap badle
-        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
-        setInterval(() => {
-            moveSlide2(1);
-        }, 3000); 
-    </script>
-    <style>
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-
-        .header {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .header img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 600px;
-            /* Aap ise apne hisaab se chota/bada kar sakte hain */
-            height: 400px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            background: white;
-        }
-
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%;
-        }
-
-        .slider-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* Photo ko stretch hone se bachata hai */
-            flex-shrink: 0;
-        }
-
-        /* Buttons styling */
-        .btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            z-index: 10;
-        }
-
-        .btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev-btn {
-            left: 10px;
-        }
-
-        .next-btn {
-            right: 10px;
-        }
-
-        a img {
-            height: auto;
-            max-width: 100%;
-        }
-    </style>
-
-
-    </head>
-
-
-
-    <main>
-        <h1>The Breakthrough </h1><pre>28/08/2026</pre>
+        <!-- ================= CONTAINER 4 ================= -->
+        <h1>Kaivalya Vohra and Aadit Palicha   23/08/2026</h1>
         <div class="slider-container">
-            <!-- Prev/Next Buttons -->
-            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
-
-            <!-- Photos Wrapper -->
-            <div class="slider-wrapper" id="slider3">
-                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
-                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+            <button class="btn prev-btn">&#10094;</button>
+            <button class="btn next-btn">&#10095;</button>
+            <div class="slider-wrapper">
                 <img src="zepto1.jpeg" alt="Photo 1">
                 <img src="zepto2.jpeg" alt="Photo 1">
                 <img src="zepto3.jpeg" alt="Photo 1">
@@ -810,126 +363,12 @@
 
         </span>
 
-    </main>
-    <script>
-        let currentIndex3 = 0;
-        const slider3 = document.getElementById('slider3');
-        const totalImages3 = slider3.children.length; // Yeh automatically 10 count karega
-
-        function moveSlide3(direction) {
-            currentIndex3 += direction;
-
-            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-            if (currentIndex3 >= totalImages3) {
-                currentIndex3 = 0;
-            }
-
-            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
-            if (currentIndex3 < 0) {
-                currentIndex3 = totalImages3 - 1;
-            }
-
-            // Slider ko shift karo
-            slider3.style.transform = `translateX(-${currentIndex3 * 100}%)`;
-        }
-
-        // (Optional) Automatic slider - Har 3 second mein apne aap badle
-        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
-        setInterval(() => {
-            moveSlide3(1);
-        }, 3000); 
-    </script>
-    <style>
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-
-        .header {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .header img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 600px;
-            /* Aap ise apne hisaab se chota/bada kar sakte hain */
-            height: 400px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            background: white;
-        }
-
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%;
-        }
-
-        .slider-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* Photo ko stretch hone se bachata hai */
-            flex-shrink: 0;
-        }
-
-        /* Buttons styling */
-        .btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            z-index: 10;
-        }
-
-        .btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev-btn {
-            left: 10px;
-        }
-
-        .next-btn {
-            right: 10px;
-        }
-
-        a img {
-            height: auto;
-            max-width: 100%;
-        }
-    </style>
-    <main>
-        <h1>Radhakishan Damani</h1><pre>05/09/2026</pre>
+        <!-- ================= CONTAINER 5 ================= -->
+        <h1>Radhakishan Damani     28/08/2026</h1>
         <div class="slider-container">
-            <!-- Prev/Next Buttons -->
-            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
-
-            <!-- Photos Wrapper -->
-            <div class="slider-wrapper" id="slider4">
-                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
-                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+            <button class="btn prev-btn">&#10094;</button>
+            <button class="btn next-btn">&#10095;</button>
+            <div class="slider-wrapper">
                 <img src="dmart1.jpeg" alt="Photo 1">
                 <img src="dmart2.jpeg" alt="Photo 1">
                 <img src="dmart3.jpeg" alt="Photo 1">
@@ -995,138 +434,24 @@
 
         </span>
 
-    </main>
-    <script>
-        let currentIndex4 = 0;
-        const slider4 = document.getElementById('slider4');
-        const totalImages4 = slider4.children.length; // Yeh automatically 10 count karega
-
-        function moveSlide4(direction) {
-            currentIndex4 += direction;
-
-            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-            if (currentIndex4 >= totalImages4) {
-                currentIndex4 = 0;
-            }
-
-            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
-            if (currentIndex4 < 0) {
-                currentIndex4 = totalImages4 - 1;
-            }
-
-            // Slider ko shift karo
-            slider4.style.transform = `translateX(-${currentIndex4 * 100}%)`;
-        }
-
-        // (Optional) Automatic slider - Har 3 second mein apne aap badle
-        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
-        setInterval(() => {
-            moveSlide4(1);
-        }, 3000); 
-    </script>
-    <style>
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-
-        .header {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .header img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 600px;
-            /* Aap ise apne hisaab se chota/bada kar sakte hain */
-            height: 400px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            background: white;
-        }
-
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%;
-        }
-
-        .slider-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* Photo ko stretch hone se bachata hai */
-            flex-shrink: 0;
-        }
-
-        /* Buttons styling */
-        .btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            z-index: 10;
-        }
-
-        .btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev-btn {
-            left: 10px;
-        }
-
-        .next-btn {
-            right: 10px;
-        }
-
-        a img {
-            height: auto;
-            max-width: 100%;
-        }
-    </style>
-    <main>
-        <h1>The Takeaway</h1><pre>13/09/2026</pre>
+        <!-- ================= CONTAINER 6 ================= -->
         <div class="slider-container">
-            <!-- Prev/Next Buttons -->
-            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
-
-            <!-- Photos Wrapper -->
-            <div class="slider-wrapper" id="slider5">
-                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
-                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+            <h1>The Takeaway   05/09/2026</h1>
+            <button class="btn prev-btn">&#10094;</button>
+            <button class="btn next-btn">&#10095;</button>
+            <div class="slider-wrapper">
                 <img src="take1.jpeg" alt="Photo 1">
                 <img src="take2.jpeg" alt="Photo 1">
                 <img src="take3.jpeg" alt="Photo 1">
                 <img src="take4.jpeg" alt="Photo 1">
                 <img src="take5.jpeg" alt="Photo 1">
-                <img src="take6.jpeg" alt="Photo1">
+                <img src="take6.jpeg" alt="Photo 1">
             </div>
         </div>
         <span>
             <ol>
                 <li>
-                    . Defining the Entrepreneurial Mindset
+                    1. Defining the Entrepreneurial Mindset
 
                     · Explain that entrepreneurship is a journey, not a single moment.
                     · Emphasize that mindset matters as much as the idea.
@@ -1138,7 +463,7 @@
                     · Introduce the continuous cycle: Start • Learn • Improve • Repeat
                 </li>
                 <li>
-                    . Identifying the Problem and Opportunity
+                    2. Identifying the Problem and Opportunity
 
                     · Stress that every strong startup begins with a clear understanding of a real-world problem.
                     · Outline the process of finding opportunity: An entrepreneur sees a gap where others see
@@ -1151,7 +476,7 @@
                     · Include the guiding question: 'Whose problem am I solving?'
                 </li>
                 <li>
-                    . From Idea to Impact
+                    3. From Idea to Impact
 
                     · Explain that the goal is not just to launch something, but to create lasting value.
                     · Define the components of true impact: People, Change, Value, and Growth.
@@ -1160,7 +485,7 @@
 
                 </li>
                 <li>
-                    . From Idea to Impact
+                    3. From Idea to Impact
 
                     · Explain that the goal is not just to launch something, but to create lasting value.
                     · Define the components of true impact: People, Change, Value, and Growth.
@@ -1172,126 +497,12 @@
 
         </span>
 
-    </main>
-    <script>
-        let currentIndex5 = 0;
-        const slider5 = document.getElementById('slider5');
-        const totalImages5 = slider5.children.length; // Yeh automatically 10 count karega
-
-        function moveSlide5(direction) {
-            currentIndex5 += direction;
-
-            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-            if (currentIndex5 >= totalImages5) {
-                currentIndex5 = 0;
-            }
-
-            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
-            if (currentIndex5 < 0) {
-                currentIndex5 = totalImages5 - 1;
-            }
-
-            // Slider ko shift karo
-            slider5.style.transform = `translateX(-${currentIndex5 * 100}%)`;
-        }
-
-        // (Optional) Automatic slider - Har 3 second mein apne aap badle
-        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
-        setInterval(() => {
-            moveSlide5(1);
-        }, 3000); 
-    </script>
-    <style>
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-
-        .header {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .header img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 600px;
-            /* Aap ise apne hisaab se chota/bada kar sakte hain */
-            height: 400px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            background: white;
-        }
-
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%;
-        }
-
-        .slider-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* Photo ko stretch hone se bachata hai */
-            flex-shrink: 0;
-        }
-
-        /* Buttons styling */
-        .btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            z-index: 10;
-        }
-
-        .btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev-btn {
-            left: 10px;
-        }
-
-        .next-btn {
-            right: 10px;
-        }
-
-        a img {
-            height: auto;
-            max-width: 100%;
-        }
-    </style>
-    <main>
-        <h1>Vineeta singh</h1><pre>13/09/2026</pre>
+        <!-- ================= CONTAINER 7 ================= -->
+        <h1>Vineeta Singh   13/09/2026</h1>
         <div class="slider-container">
-            <!-- Prev/Next Buttons -->
-            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
-
-            <!-- Photos Wrapper -->
-            <div class="slider-wrapper" id="slider6">
-                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
-                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+            <button class="btn prev-btn">&#10094;</button>
+            <button class="btn next-btn">&#10095;</button>
+            <div class="slider-wrapper">
                 <img src="sugar1.jpeg" alt="Photo 1">
                 <img src="sugar2.jpeg" alt="Photo 1">
                 <img src="sugar3.jpeg" alt="Photo 1">
@@ -1302,7 +513,7 @@
         <span>
             <ol>
                 <li>
-                    . Introduction & The Founder's Vision
+                    1. Introduction & The Founder's Vision
 
                     · Subject: Highlight Vineeta Singh, Co-founder & CEO of SUGAR Cosmetics.
                     · The Vision: Frame her journey as a mission to build a brand that every Indian woman could feel
@@ -1312,10 +523,9 @@
                     · Early Career: Gained corporate experience at Bain & Company and Flipkart.
                     · The Big Dream: Wanted to build a brand that celebrates Indian women and makes beauty accessible to
                     all.
-
                 </li>
                 <li>
-                    . Company Overview & Milestones
+                    2. Company Overview & Milestones
 
                     · About the Company: SUGAR Cosmetics is an Indian beauty brand founded in 2012 by Vineeta Singh and
                     Kaushik Mukherjee. It is known for high-quality, long-lasting, and inclusive makeup products
@@ -1330,7 +540,7 @@
                     · 2021+: Grew into a household name with a strong global presence.
                 </li>
                 <li>
-                    . Products, Innovation & Core Values
+                    3. Products, Innovation & Core Values
 
                     · Product Philosophy: 'Makeup for every mood, every skin tone, every you.'
                     · Product Categories:
@@ -1342,7 +552,7 @@
                     Made for Indian Skin.
                 </li>
                 <li>
-                    . Customer Validation & Market Reception
+                    4. Customer Validation & Market Reception
 
                     · Reviews: Highlight the strong customer feedback with an average rating of 4.5/5 from over
                     1,20,000+ reviews.
@@ -1352,7 +562,7 @@
                     'Stays for hours and the shades are just perfect!' to demonstrate real customer love.
                 </li>
                 <li>
-                    . Financials & Profitability
+                    5. Financials & Profitability
 
                     · Growth Trajectory: Show a steady increase in Estimated Annual Revenue (INR Cr) from 2017 through
                     2023.
@@ -1364,126 +574,12 @@
 
         </span>
 
-    </main>
-    <script>
-        let currentIndex6 = 0;
-        const slider6 = document.getElementById('slider6');
-        const totalImages6 = slider6.children.length; // Yeh automatically 10 count karega
-
-        function moveSlide6(direction) {
-            currentIndex6 += direction;
-
-            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-            if (currentIndex6 >= totalImages6) {
-                currentIndex6 = 0;
-            }
-
-            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
-            if (currentIndex6 < 0) {
-                currentIndex6 = totalImages6 - 1;
-            }
-
-            // Slider ko shift karo
-            slider6.style.transform = `translateX(-${currentIndex6 * 100}%)`;
-        }
-
-        // (Optional) Automatic slider - Har 3 second mein apne aap badle
-        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
-        setInterval(() => {
-            moveSlide6(1);
-        }, 3000); 
-    </script>
-    <style>
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-
-        .header {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .header img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 600px;
-            /* Aap ise apne hisaab se chota/bada kar sakte hain */
-            height: 400px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            background: white;
-        }
-
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%;
-        }
-
-        .slider-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* Photo ko stretch hone se bachata hai */
-            flex-shrink: 0;
-        }
-
-        /* Buttons styling */
-        .btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            z-index: 10;
-        }
-
-        .btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev-btn {
-            left: 10px;
-        }
-
-        .next-btn {
-            right: 10px;
-        }
-
-        a img {
-            height: auto;
-            max-width: 100%;
-        }
-    </style>
-    <main>
-        <h1>Bhavish Aggarwal</h1><pre>25/09/2026</pre>
+        <!-- ================= CONTAINER 8 ================= -->
+        <h1>Bhavish Aggarwal    19/09/2026</h1>
         <div class="slider-container">
-            <!-- Prev/Next Buttons -->
-            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
-
-            <!-- Photos Wrapper -->
-            <div class="slider-wrapper" id="slider7">
-                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
-                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+            <button class="btn prev-btn">&#10094;</button>
+            <button class="btn next-btn">&#10095;</button>
+            <div class="slider-wrapper">
                 <img src="bhavish1.jpeg" alt="Photo 1">
                 <img src="bhavish2.jpeg" alt="Photo 1">
                 <img src="bhavish3.jpeg" alt="Photo 1">
@@ -1549,132 +645,18 @@
 
         </span>
 
-    </main>
-    <script>
-        let currentIndex7 = 0;
-        const slider7 = document.getElementById('slider7');
-        const totalImages7 = slider7.children.length; // Yeh automatically 10 count karega
-
-        function moveSlide7(direction) {
-            currentIndex7 += direction;
-
-            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-            if (currentIndex7 >= totalImages7) {
-                currentIndex7 = 0;
-            }
-
-            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
-            if (currentIndex7 < 0) {
-                currentIndex7 = totalImages7 - 1;
-            }
-
-            // Slider ko shift karo
-            slider7.style.transform = `translateX(-${currentIndex7 * 100}%)`;
-        }
-
-        // (Optional) Automatic slider - Har 3 second mein apne aap badle
-        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
-        setInterval(() => {
-            moveSlide7(1);
-        }, 3000); 
-    </script>
-    <style>
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-
-        .header {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .header img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 600px;
-            /* Aap ise apne hisaab se chota/bada kar sakte hain */
-            height: 400px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            background: white;
-        }
-
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%;
-        }
-
-        .slider-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* Photo ko stretch hone se bachata hai */
-            flex-shrink: 0;
-        }
-
-        /* Buttons styling */
-        .btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            z-index: 10;
-        }
-
-        .btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev-btn {
-            left: 10px;
-        }
-
-        .next-btn {
-            right: 10px;
-        }
-
-        a img {
-            height: auto;
-            max-width: 100%;
-        }
-    </style>
-    <main>
-        <h1>Ritesh Agarwal</h1><pre>10/10/2026</pre>
+        <!-- ================= CONTAINER 9 ================= -->
+        <h1>Ritesh Agarwal    25/09/2026</h1>
         <div class="slider-container">
-            <!-- Prev/Next Buttons -->
-            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
-
-            <!-- Photos Wrapper -->
-            <div class="slider-wrapper" id="slider8">
-                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
-                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+            <button class="btn prev-btn">&#10094;</button>
+            <button class="btn next-btn">&#10095;</button>
+            <div class="slider-wrapper">
                 <img src="ritesh1.jpeg" alt="Photo 1">
                 <img src="ritesh2.jpeg" alt="Photo 1">
                 <img src="ritesh3.jpeg" alt="Photo 1">
                 <img src="ritesh4.jpeg" alt="Photo 1">
                 <img src="ritesh5.jpeg" alt="Photo 1">
-                <img src="ritesh6.jpeg" alt="">
+                <img src="ritesh6.jpeg" alt="Photo 1">
             </div>
         </div>
         <span>
@@ -1735,126 +717,12 @@
 
         </span>
 
-    </main>
-    <script>
-        let currentIndex8 = 0;
-        const slider8 = document.getElementById('slider8');
-        const totalImages8 = slider8.children.length; // Yeh automatically 10 count karega
-
-        function moveSlide8(direction) {
-            currentIndex8 += direction;
-
-            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-            if (currentIndex8 >= totalImages8) {
-                currentIndex8 = 0;
-            }
-
-            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
-            if (currentIndex8 < 0) {
-                currentIndex8 = totalImages8 - 1;
-            }
-
-            // Slider ko shift karo
-            slider8.style.transform = `translateX(-${currentIndex8 * 100}%)`;
-        }
-
-        // (Optional) Automatic slider - Har 3 second mein apne aap badle
-        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
-        setInterval(() => {
-            moveSlide8(1);
-        }, 3000); 
-    </script>
-    <style>
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-
-        .header {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .header img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 600px;
-            /* Aap ise apne hisaab se chota/bada kar sakte hain */
-            height: 400px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            background: white;
-        }
-
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%;
-        }
-
-        .slider-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* Photo ko stretch hone se bachata hai */
-            flex-shrink: 0;
-        }
-
-        /* Buttons styling */
-        .btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            z-index: 10;
-        }
-
-        .btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev-btn {
-            left: 10px;
-        }
-
-        .next-btn {
-            right: 10px;
-        }
-
-        a img {
-            height: auto;
-            max-width: 100%;
-        }
-    </style>
-    <main>
-        <h1>  Elon Musk </h1><pre>14/10/2026</pre>
+        <!-- ================= CONTAINER 10 ================= -->
+        <h1>Elon Musk   02/10/2026</h1>
         <div class="slider-container">
-            <!-- Prev/Next Buttons -->
-            <button class="btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="btn next-btn" onclick="moveSlide(1)">&#10095;</button>
-
-            <!-- Photos Wrapper -->
-            <div class="slider-wrapper" id="slider9">
-                <!-- Yahan 10 photos daalein. Filhal maine placeholder image URL use kiye hain. 
-                 Aap src="" mein apni photos ka path daal sakte hain (e.g., images/photo1.jpg) -->
+            <button class="btn prev-btn">&#10094;</button>
+            <button class="btn next-btn">&#10095;</button>
+            <div class="slider-wrapper">
                 <img src="elon1.jpeg" alt="Photo 1">
                 <img src="elon2.jpeg" alt="Photo 1">
                 <img src="elon3.jpeg" alt="Photo 1">
@@ -1929,60 +797,212 @@
 
         </span>
 
-    </main>
+
+        <!-- ================= CONTAINER 11 ================= -->
+        <h1>The Part Of Nobody    10/10/2026</h1>
+        <div class="slider-container">
+            <button class="btn prev-btn">&#10094;</button>
+            <button class="btn next-btn">&#10095;</button>
+            <div class="slider-wrapper">
+                <img src="part1.jpeg" alt="Photo 1">
+                <!-- <img src="part2.jpeg" alt="Photo 1"> -->
+                <img src="part3.jpeg" alt="Photo 1">
+                <img src="part4.jpeg" alt="Photo 1">
+                <img src="part5.jpeg" alt="Photo 1">
+                <img src="part6.jpeg" alt="photo1">
+            </div>
+        </div>
+        <span>
+            <ol>
+                <li>
+                    Slide 1 (01/06): Title Slide
+
+                    · Heading: THE PART NOBODY TALKS ABOUT
+                    · Subheading: A note for every founder in the messy middle
+                    · Visual: A crescent moon icon.
+                </li>
+                <li>
+                    Slide 2 (02/06): Encouragement
+
+                    · Quote: That version of you is not failing. That version of you is building.
+                    · Visual: A heart icon.
+                </li>
+                <li>
+                    Slide 3 (03/06): The Reality of Success
+
+                    · Heading: WHAT ACTUALLY SEPARATES THEM
+                    · Content:
+                    · Not talent.
+                    · Not timing.
+                    · Not luck.
+                    · Explanation: Every founder whose story you admire spent far more time in the uncertain middle than
+                    in the highlight reel. What separated the ones who made it was simple: they kept showing up on the
+                    days when nothing felt like progress.
+                </li>
+                <li>
+                    Slide 4 (04/06): Acknowledging the Struggle
+
+                    · Heading: IF TODAY FEELS HARD
+                    · Quote: You might just be exactly where every founder before you has stood.
+                    · Explanation: A slow, unclear, or discouraging day is not a sign you're on the wrong path. It's
+                    often just part of the path.
+
+                </li>
+                <li>
+                    Slide 5 (05/06): Final Thoughts & Call to Action
+
+                    · Heading: Progress is quiet before it's visible.
+                    · Subheading: Keep going.
+                    · Hashtags: #StartupMotivation #EntrepreneurMindset #ECellIITB #FounderJourney #BuildInPublic
+                </li>
+
+            </ol>
+
+
+        </span>
+
+        <!-- ================= CONTAINER 12 ================= -->
+        <h1>Deepinder Goyal 14/10/2026</h1>
+        <div class="slider-container">
+            <button class="btn prev-btn">&#10094;</button>
+            <button class="btn next-btn">&#10095;</button>
+            <div class="slider-wrapper">
+                <img src="deepinder1.jpeg" alt="Photo 1">
+                <img src="deepinder2.jpeg" alt="Photo 1">
+                <img src="deepinder3.jpeg" alt="Photo 1">
+                <img src="deepinder4.jpeg" alt="Photo 1">
+                <img src="deepinder5.jpeg" alt="Photo 1">
+                <img src="deepinder6.jpeg" alt="Photo 1">
+            </div>
+        </div>
+
+    </div>
+    <span>
+        <ol>
+            <li>
+                Slide 1 (01/06): Title Slide
+
+                · Heading: SUCCESS STORY
+                · Subject: Deepinder Goyal — Founder, Zomato
+                · Tagline: Built a food-tech giant... that didn't start with food delivery at all.
+            </li>
+            <li>
+                Slide 2 (02/06): The Beginning
+
+                · Heading: THE BEGINNING
+                · Subheading: It started as a simple menu-scanning website.
+                · Content: Deepinder Goyal built "Foodiebay" to solve one small, specific problem — helping office
+                colleagues avoid calling restaurants for menus. There was no grand vision of building India's
+                biggest food-tech company. Just a real problem, solved for the people around him.
+            </li>
+            <li>
+                Slide 3 (03/06): The Journey
+
+                · Heading: THE JOURNEY
+                · Subheading: From office menus to a public company
+                · Timeline:
+                · 2008: Launches "Foodiebay" — a menu-scanning site
+                · 2010: Rebrands to Zomato, expands beyond menus
+                · 2015: Enters food delivery across major Indian cities
+                · 2021: Zomato goes public on the Indian stock exchange
+            </li>
+            <li>
+                Slide 4 (04/06): The Takeaway
+
+                · Heading: THE TAKEAWAY
+                · Quote: “You don't need to see the whole mountain before you take the first step.”
+            </li>
+            <li>
+                Slide 5 (05/06): Why It Matters
+
+                · Heading: WHY IT MATTERS
+                · Key Point: The bigger vision often reveals itself along the way.
+                · Explanation: Zomato didn't begin as a plan to disrupt food delivery. It began as a small, useful
+                tool for a real problem. Solve what's in front of you well, and the scale often follows.
+            </li>
+            <li>
+                Slide 6 (06/06): Conclusion & Call to Action
+
+                · Message: Solve the problem in front of you.
+                · Hashtags: #FounderStories #Entrepreneurship #ECellIITB #StartupIndia
+            </li>
+        </ol>
+    </span>
+
     <script>
-        let currentIndex9 = 0;
-        const slider9 = document.getElementById('slider9');
-        const totalImages9 = slider9.children.length; // Yeh automatically 10 count karega
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. सभी 12 स्लाइडर कंटेनरों को चुनें
+            const allSliders = document.querySelectorAll('.slider-container');
 
-        function moveSlide9(direction) {
-            currentIndex9 += direction;
+            // 2. हर स्लाइडर कंटेनर के लिए अलग लॉजिक चालू करें
+            allSliders.forEach((container) => {
+                let currentIndex = 0;
+                let slideInterval;
 
-            // Agar aage badhne par 10 se zyada ho jaye, to wapas 0 (pehli photo) par le aao
-            if (currentIndex9 >= totalImages9) {
-                currentIndex9 = 0;
-            }
+                const sliderWrapper = container.querySelector('.slider-wrapper');
+                const prevBtn = container.querySelector('.prev-btn');
+                const nextBtn = container.querySelector('.next-btn');
+                const totalImages = sliderWrapper.children.length; // खुद ही 10 फोटो गिन लेगा
 
-            // Agar peeche jaane par -1 ho jaye, to last photo (9th index) par le aao
-            if (currentIndex9 < 0) {
-                currentIndex9 = totalImages9 - 1;
-            }
+                // स्लाइडर की फोटो शिफ्ट करने का फ़ंक्शन
+                function updateSlider() {
+                    sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+                }
 
-            // Slider ko shift karo
-            slider9.style.transform = `translateX(-${currentIndex9 * 100}%)`;
-        }
+                // Next स्लाइड पर जाने का फ़ंक्शन
+                function nextSlide() {
+                    currentIndex++;
+                    if (currentIndex >= totalImages) {
+                        currentIndex = 0; // आखिरी फोटो के बाद वापस पहली फोटो पर जाएं
+                    }
+                    updateSlider();
+                }
 
-        // (Optional) Automatic slider - Har 3 second mein apne aap badle
-        // Agar automatic nahi chahiye to neeche wali 2 lines hata dein
-        setInterval(() => {
-            moveSlide9(1);
-        }, 3000); 
+                // Prev स्लाइड पर जाने का फ़ंक्शन
+                function prevSlide() {
+                    currentIndex--;
+                    if (currentIndex < 0) {
+                        currentIndex = totalImages - 1; // पहली फोटो के पीछे जाने पर 10वीं फोटो पर जाएं
+                    }
+                    updateSlider();
+                }
+
+                // Next बटन क्लिक इवेंट
+                nextBtn.addEventListener('click', () => {
+                    nextSlide();
+                    resetTimer(); // बटन दबाने पर ऑटो-टाइमर रीसेट हो जाएगा
+                });
+
+                // Prev बटन क्लिक इवेंट
+                prevBtn.addEventListener('click', () => {
+                    prevSlide();
+                    resetTimer(); // बटन दबाने पर ऑटो-टाइमर रीसेट हो जाएगा
+                });
+
+                // --- ऑटोमैटिक स्लाइडर (हर 3 सेकंड में बदलेगा, आप '3000' को बदल भी सकते हैं) ---
+                function startAutoSlide() {
+                    slideInterval = setInterval(nextSlide, 3000);
+                }
+
+                function stopAutoSlide() {
+                    clearInterval(slideInterval);
+                }
+
+                // जब यूजर माउस स्लाइडर के ऊपर रखे, तो ऑटो-चलना बंद हो जाए
+                container.addEventListener('mouseenter', stopAutoSlide);
+
+                // जब यूजर माउस हटाए, तो दोबारा ऑटो-चलना शुरू हो जाए
+                container.addEventListener('mouseleave', startAutoSlide);
+                // टाइमर रीसेट करने का फ़ंक्शन
+                function resetTimer() {
+                    stopAutoSlide();
+                    startAutoSlide();
+                }
+                // शुरुआत में ऑटो-स्लाइड चालू करें
+                startAutoSlide();
+            });
+        });
     </script>
-    <style>
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-
-        .header {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .header img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 600px;
-            /* Aap ise apne hisaab se chota/bada kar sakte hain */
 </body>
+
 </html>
